@@ -386,6 +386,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea7a07fc245c8ff4c97c19ecc9a74d7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Vine: {fileID: 3933235479955813382, guid: 572af5d57c18b3e4faa78be1027a35a4, type: 3}
+  targetPos: {x: 0, y: 0, z: 0}
+  playerPos: {x: 0, y: 0, z: 0}
+  playerBody: {fileID: 799496625}
 --- !u!1 &1101792383
 GameObject:
   m_ObjectHideFlags: 0
@@ -398,7 +402,7 @@ GameObject:
   - component: {fileID: 1101792384}
   m_Layer: 0
   m_Name: Ceiling
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -642,11 +646,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3933235479955813380, guid: 572af5d57c18b3e4faa78be1027a35a4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -13.9
+      value: -5.57
       objectReference: {fileID: 0}
     - target: {fileID: 3933235479955813380, guid: 572af5d57c18b3e4faa78be1027a35a4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.9
+      value: -0.68
       objectReference: {fileID: 0}
     - target: {fileID: 3933235479955813380, guid: 572af5d57c18b3e4faa78be1027a35a4, type: 3}
       propertyPath: m_LocalPosition.z
@@ -684,7 +688,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Vine
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 3957506898747600230, guid: 572af5d57c18b3e4faa78be1027a35a4, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 799496626}
+    - target: {fileID: 3957506898747600230, guid: 572af5d57c18b3e4faa78be1027a35a4, type: 3}
+      propertyPath: theRigidBody
+      value: 
+      objectReference: {fileID: 799496625}
+    m_RemovedComponents:
+    - {fileID: 5862977981579283079, guid: 572af5d57c18b3e4faa78be1027a35a4, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
