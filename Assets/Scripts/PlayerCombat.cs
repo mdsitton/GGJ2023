@@ -28,20 +28,20 @@ public class PlayerCombat : MonoBehaviour, IAttackable
     {
         move = GetComponent<PlayerMove>();
         body = GetComponent<Rigidbody2D>();
-        enemyLayerMask = LayerMask.GetMask("enemy");
+        enemyLayerMask = LayerMask.GetMask("Enemy");
     }
 
     private void FixedUpdate()
     {
         var movementDirection = move.MovementDirection;
-        var cast = Physics2D.CircleCast(transform.position, attackArea, movementDirection, attackRange);
+        var cast = Physics2D.CircleCast(transform.position, attackArea, movementDirection, attackRange, enemyLayerMask);
 
         if (cast.collider != null)
         {
             var attackable = cast.collider.gameObject.GetComponent<IAttackable>();
             if (attackable != null)
             {
-                var dmg = 5.0f * body.velocity.magnitude;
+                var dmg = 2.0f + body.velocity.magnitude;
                 attackable.Attack(dmg);
             }
         }
@@ -59,5 +59,6 @@ public class PlayerCombat : MonoBehaviour, IAttackable
     public void Attack(float damage)
     {
         hp -= damage;
+        Debug.Log($"dmg {damage}");
     }
 }

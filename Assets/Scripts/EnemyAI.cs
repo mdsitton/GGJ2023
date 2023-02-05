@@ -57,13 +57,13 @@ public class EnemyAI : MonoBehaviour, IAttackable
             case State.ChaseTarget:
                 transform.position = Vector3.MoveTowards(transform.position, player.transform.position, runningSpeed * Time.deltaTime);
                 //Attack Range
-                float attackRange = 2f;
+                float attackRange = 1f;
                 if (Vector3.Distance(transform.position, player.transform.position) <= attackRange)
                 {
                     if (Time.time > nextAttackTime)
                     {
                         // currentState = State.attackingTarget;
-                        float fireRate = 0.75f;
+                        float fireRate = 0.5f;
                         Debug.Log("Enemy NEAR you he can ATTACK");
                         player.GetComponent<IAttackable>().Attack(3.0f);
 
@@ -123,5 +123,6 @@ public class EnemyAI : MonoBehaviour, IAttackable
     public void Attack(float damage)
     {
         hp -= damage;
+        Debug.Log($"DMG For enemy: {damage}");
     }
 }

@@ -11,13 +11,12 @@ public class HealthUI : MonoBehaviour
     {
         currentHealth = 3;
         ShowCurrentHealth();
-        combat=  GameObject.FindWithTag("Player").GetComponent<PlayerCombat>();
     }
 
     private void LateUpdate()
     {
         ShowCurrentHealth();
-        
+
     }
 
     private void ShowCurrentHealth()
@@ -32,7 +31,7 @@ public class HealthUI : MonoBehaviour
         }
 
         if (currentHealth == 15)
-            {
+        {
             images[0].enabled = false;
             images[1].enabled = true;
             images[2].enabled = false;
