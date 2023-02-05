@@ -96,7 +96,7 @@ public class EnemyAI : MonoBehaviour
     private Vector3 GetRoamingPosition()
     {
         Vector3 random = new Vector3(UnityEngine.Random.Range(-1f, 1f),UnityEngine.Random.Range(-1f, 1f)).normalized;//Get Random Direction
-        random.y = 0f;//floor
+       // random.y = 0f;//floor
         return startingPosition + random * Random.Range(10f, 70f);
     }
 
