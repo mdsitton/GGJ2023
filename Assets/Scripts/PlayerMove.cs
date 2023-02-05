@@ -10,11 +10,14 @@ public class PlayerMove : MonoBehaviour
     public Vector3 playerPos;
     public Rigidbody2D playerBody;
 
+    public List<ShootVine> vineList;
+
 
     // Start is called before the first frame update
     void Start()
     {
         playerBody = GetComponent<Rigidbody2D>();
+        vineList = new List<ShootVine>();
     }
 
     // Update is called once per frame
@@ -23,20 +26,19 @@ public class PlayerMove : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             Vector3 mousePos = Input.mousePosition;
-            {
-                Debug.Log(mousePos.x);
-                Debug.Log(mousePos.y);
-            }
 
             targetPos = Camera.main.ScreenToWorldPoint(mousePos);
             targetPos.z = 0;
             Vine.SetActive(false);
             var gameObject = Instantiate(Vine, playerBody.position, Quaternion.identity);
             var vine = gameObject.GetComponent<ShootVine>();
+            vineList.Add(vine);
             var vineRenderer = gameObject.GetComponent<VineRenderer>();
             vine.player = this;
             vineRenderer.playerTransform = GetComponent<Transform>();
             gameObject.SetActive(true);
+
+
 
         }
 

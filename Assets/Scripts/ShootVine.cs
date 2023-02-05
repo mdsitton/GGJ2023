@@ -5,6 +5,7 @@ using UnityEngine;
 public class ShootVine : MonoBehaviour
 {
     public float vineSpeed = 0.000002f;
+    public bool attach = false;
 
     public Rigidbody2D myRigidBody;
 
@@ -34,6 +35,12 @@ public class ShootVine : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(Input.GetMouseButtonUp(0)){
+            attach = false;
+        }
+    
+        if(attach)
+            player.playerBody.velocity = direction * vineSpeed;
     }
 
     void OnTriggerEnter2D(Collider2D col)
@@ -42,9 +49,13 @@ public class ShootVine : MonoBehaviour
         if (col.gameObject.tag == "Platform")
         {
             myRigidBody.velocity = Vector2.zero;
+            attach = true;
 
             print("collide");
+
         }
+
+
     }
 
 
