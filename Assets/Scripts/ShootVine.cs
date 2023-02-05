@@ -15,6 +15,8 @@ public class ShootVine : MonoBehaviour
     public Vector2 targetPos2D;
     public Vector2 playerPos;
 
+    public PlayerMove player;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +28,7 @@ public class ShootVine : MonoBehaviour
         heading = targetPos2D - playerPos;
         direction = heading / heading.magnitude;
         myRigidBody.velocity += direction * vineSpeed;
+        Debug.Log($"Instance {player}");
     }
 
     // Update is called once per frame

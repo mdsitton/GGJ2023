@@ -30,8 +30,13 @@ public class PlayerMove : MonoBehaviour
 
             targetPos = Camera.main.ScreenToWorldPoint(mousePos);
             targetPos.z = 0;
-
-            Instantiate(Vine, playerBody.position, Quaternion.identity);
+            Vine.SetActive(false);
+            var gameObject = Instantiate(Vine, playerBody.position, Quaternion.identity);
+            var vine = gameObject.GetComponent<ShootVine>();
+            var vineRenderer = gameObject.GetComponent<VineRenderer>();
+            vine.player = this;
+            vineRenderer.playerTransform = GetComponent<Transform>();
+            gameObject.SetActive(true);
 
         }
 
