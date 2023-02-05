@@ -47,13 +47,17 @@ public class ShootVine : MonoBehaviour
         {
             vineRenderer.Retract();
         }
+
         if (Input.GetMouseButtonUp(0))
         {
             isAttached = false;
+            vineRenderer.Retract();
         }
 
         if (isAttached)
+        {
             player.playerBody.velocity = direction * vineSpeed;
+        }
     }
 
     void OnTriggerEnter2D(Collider2D col)

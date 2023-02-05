@@ -37,9 +37,6 @@ public class PlayerMove : MonoBehaviour
             vine.player = this;
             vineRenderer.playerTransform = GetComponent<Transform>();
             gameObject.SetActive(true);
-
-
-
         }
 
     }
