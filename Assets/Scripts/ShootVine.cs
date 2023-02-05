@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class ShootVine : MonoBehaviour
 {
-
-
     public float vineSpeed = 0.000002f;
 
     public Rigidbody2D myRigidBody;
