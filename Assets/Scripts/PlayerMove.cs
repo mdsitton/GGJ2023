@@ -8,7 +8,7 @@ public class PlayerMove : MonoBehaviour
     public Vector3 playerPos;
     public Rigidbody2D playerBody;
 
-    public List<VineMovement> vines;
+    private List<VineMovement> vines;
 
     // Start is called before the first frame update
     void Start()
@@ -54,13 +54,40 @@ public class PlayerMove : MonoBehaviour
 
     private void CheckMouseInput()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton(0))
         {
             shootVine = true;
         }
         if (Input.GetMouseButtonUp(0))
         {
             retractVines = true;
+        }
+    }
+
+    Vector2 CalculateVineAttachPos(Vector2 vinePos)
+    {
+        var diff = playerBody.position - vinePos;
+        return vinePos + diff.normalized;
+    }
+
+    void FixedUpdate()
+    {
+        // check for any attached vines and drive the character towards them
+        foreach (var vine in vines)
+        {
+            if (vine.State == VineState.ATTACH)
+            {
+                // var endPos = CalculateVineAttachPos();
+                var posDiff = vine.rigidBody.position - playerBody.position;
+
+                // set the velocity in the direction of the vine attach point
+                playerBody.velocity += posDiff.normalized;
+
+                var distance = posDiff.magnitude;
+
+                // Clamp velocity to 10 m/s in any direction
+                playerBody.velocity = Vector2.ClampMagnitude(playerBody.velocity, 10);
+            }
         }
     }
 
@@ -84,27 +111,6 @@ public class PlayerMove : MonoBehaviour
             foreach (var vine in vines)
             {
                 vine.State = VineState.RETRACT;
-            }
-        }
-
-        // check for any attached vines and drive the character towards them
-        foreach (var vine in vines)
-        {
-            if (vine.State == VineState.ATTACH)
-            {
-                var temp = vine.rigidBody.position - playerBody.position;
-                temp = temp / temp.magnitude * 0.2f;
-
-                if (playerBody.velocity.x > 10)
-                    playerBody.velocity = new Vector2(10, playerBody.velocity.y);
-                if (playerBody.velocity.y > 10)
-                    playerBody.velocity = new Vector2(playerBody.velocity.x, 10);
-                if (playerBody.velocity.x < -10)
-                    playerBody.velocity = new Vector2(-10, playerBody.velocity.y);
-                if (playerBody.velocity.y < -10)
-                    playerBody.velocity = new Vector2(playerBody.velocity.x, -10);
-
-                playerBody.velocity += temp;
             }
         }
     }

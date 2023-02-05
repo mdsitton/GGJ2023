@@ -58,6 +58,7 @@ public class VineRenderer : MonoBehaviour
 
     private void Update()
     {
+        GenerateLinePoints(tightenTargets, playerTransform.position, vineTransform.position);
         switch (movement.State)
         {
             case VineState.FIRE:
@@ -65,11 +66,11 @@ public class VineRenderer : MonoBehaviour
                 for (int i = 1; i < lineSegments.Length - 1; ++i)
                 {
                     lineSegments[i] = Vector3.SmoothDamp(lineSegments[i], lineSegments[i - 1], ref segmentVelocity[i], 0.3f);
+                    lineSegments[i] = Vector3.SmoothDamp(lineSegments[i], tightenTargets[i], ref segmentVelocity[i], 0.5f);
                 }
                 lineSegments[lineSegments.Length - 1] = playerTransform.position;
                 break;
             case VineState.ATTACH:
-                GenerateLinePoints(tightenTargets, playerTransform.position, vineTransform.position);
                 for (int i = 0; i < lineSegments.Length; ++i)
                 {
                     lineSegments[i] = Vector3.SmoothDamp(lineSegments[i], tightenTargets[i], ref segmentVelocity[i], 0.1f);
@@ -80,6 +81,7 @@ public class VineRenderer : MonoBehaviour
                 for (int i = 1; i < lineSegments.Length - 1; ++i)
                 {
                     lineSegments[i] = Vector3.SmoothDamp(lineSegments[i], playerTransform.position, ref segmentVelocity[i], movement.retractTimer * 0.3f);
+                    lineSegments[i] = Vector3.SmoothDamp(lineSegments[i], tightenTargets[i], ref segmentVelocity[i], 0.5f);
                 }
                 lineSegments[lineSegments.Length - 1] = playerTransform.position;
                 break;

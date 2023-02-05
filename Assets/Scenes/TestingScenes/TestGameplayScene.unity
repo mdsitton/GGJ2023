@@ -245,7 +245,7 @@ GameObject:
   - component: {fileID: 799496626}
   m_Layer: 0
   m_Name: PottedPlant
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -402,7 +402,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Vine: {fileID: 3933235479955813382, guid: 572af5d57c18b3e4faa78be1027a35a4, type: 3}
-  targetPos: {x: 0, y: 0, z: 0}
   playerPos: {x: 0, y: 0, z: 0}
   playerBody: {fileID: 799496625}
 --- !u!1 &1101792383
