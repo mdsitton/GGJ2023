@@ -54,7 +54,7 @@ public class PlayerMove : MonoBehaviour
 
     private void CheckMouseInput()
     {
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButtonDown(0))
         {
             shootVine = true;
         }
