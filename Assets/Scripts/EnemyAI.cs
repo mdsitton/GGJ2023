@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyAI : MonoBehaviour
+public class EnemyAI : MonoBehaviour, IAttackable
 {
     private enum State
     {
@@ -15,13 +15,18 @@ public class EnemyAI : MonoBehaviour
     private Vector3 roamPosition;
     private State currentState;
     private float nextAttackTime;
-    [SerializeField] private float walkigSpeed = 1;
+
+    [SerializeField] private float walkingSpeed = 1;
     [SerializeField] private float runningSpeed = 5;
 
     public GameObject player;
-    public float enemyAttackRange =15f;
+    public float enemyAttackRange = 15f;
     public bool chaseWhenGoingHome;
 
+    [SerializeField]
+    private float hp;
+
+    public float Hp => hp;
 
     private void Start()
     {
@@ -36,12 +41,16 @@ public class EnemyAI : MonoBehaviour
 
     private void Update()
     {
+        if (hp <= 0)
+        {
+            Destroy(gameObject);
+        }
         switch (currentState)
         {
             default:
 
             case State.Roaming:
-                transform.position = Vector3.MoveTowards(transform.position, roamPosition, walkigSpeed * Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, roamPosition, walkingSpeed * Time.deltaTime);
                 FindTarget();//While Roaming look for Player or Target
                 break;
 
@@ -53,9 +62,11 @@ public class EnemyAI : MonoBehaviour
                 {
                     if (Time.time > nextAttackTime)
                     {
-                       // currentState = State.attackingTarget;
+                        // currentState = State.attackingTarget;
                         float fireRate = .5f;
                         Debug.Log("Enemy NEAR you he can ATTACK");
+                        player.GetComponent<IAttackable>().Attack(3.0f);
+
                         // Animation System Maybe 
                         // currentState = State.ChaseTarget; // Reset State when Animation is Finish
                         nextAttackTime = Time.time + fireRate;//Reset for Next Attack
@@ -75,7 +86,7 @@ public class EnemyAI : MonoBehaviour
                 break;
 
             case State.goingBackToStart:
-                transform.position = Vector3.MoveTowards(transform.position, startingPosition, walkigSpeed * Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, startingPosition, walkingSpeed * Time.deltaTime);
                 if (chaseWhenGoingHome)
                     FindTarget();
                 if (transform.position.x == startingPosition.x)
@@ -84,19 +95,18 @@ public class EnemyAI : MonoBehaviour
                     //Reach Start Position
                     currentState = State.Roaming;
                 }
-                    break;
+                break;
         }
 
         if (transform.position.x == roamPosition.x)
         {
-            roamPosition = GetRoamingPosition();//Resest Random Position for Testing when he/She arrives
+            roamPosition = GetRoamingPosition(); // Reset Random Position for Testing when he/She arrives
         }
     }
 
     private Vector3 GetRoamingPosition()
     {
-        Vector3 random = new Vector3(UnityEngine.Random.Range(-1f, 1f),UnityEngine.Random.Range(-1f, 1f)).normalized;//Get Random Direction
-       // random.y = 0f;//floor
+        Vector3 random = new Vector3(UnityEngine.Random.Range(-1f, 1f), UnityEngine.Random.Range(-1f, 1f)).normalized;//Get Random Direction
         return startingPosition + random * Random.Range(10f, 70f);
     }
 
@@ -108,5 +118,10 @@ public class EnemyAI : MonoBehaviour
             currentState = State.ChaseTarget;
             Debug.Log("Enemy Found you Runnnn");
         }
+    }
+
+    public void Attack(float damage)
+    {
+        hp -= damage;
     }
 }
