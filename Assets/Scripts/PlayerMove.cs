@@ -70,6 +70,8 @@ public class PlayerMove : MonoBehaviour
         return vinePos + diff.normalized;
     }
 
+    private float rotationVel = 0;
+
     void FixedUpdate()
     {
         // check for any attached vines and drive the character towards them
@@ -83,12 +85,20 @@ public class PlayerMove : MonoBehaviour
                 // set the velocity in the direction of the vine attach point
                 playerBody.velocity += posDiff.normalized;
 
-                var distance = posDiff.magnitude;
-
                 // Clamp velocity to 10 m/s in any direction
                 playerBody.velocity = Vector2.ClampMagnitude(playerBody.velocity, 10);
+
+                var angle = Vector3.Angle(playerBody.position, vine.rigidBody.position);
+                playerBody.AddTorque(angle, ForceMode2D.Force);
             }
         }
+
+        if (!shootVine)
+        {
+            // playerBody.AddTorque(Vector2.down, ForceMode2D.Force);
+            playerBody.MoveRotation(0.0f);
+        }
+
     }
 
     // Update is called once per frame
