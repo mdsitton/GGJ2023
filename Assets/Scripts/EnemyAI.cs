@@ -15,9 +15,11 @@ public class EnemyAI : MonoBehaviour
     private Vector3 roamPosition;
     private State currentState;
     private float nextAttackTime;
+    [SerializeField] private float walkigSpeed = 1;
+    [SerializeField] private float runningSpeed = 5;
 
     public GameObject player;
-    public float enemyAttackRange =50f;
+    public float enemyAttackRange =15f;
     public bool chaseWhenGoingHome;
 
 
@@ -39,14 +41,14 @@ public class EnemyAI : MonoBehaviour
             default:
 
             case State.Roaming:
-                transform.position = Vector3.MoveTowards(transform.position, roamPosition, 8f * Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, roamPosition, walkigSpeed * Time.deltaTime);
                 FindTarget();//While Roaming look for Player or Target
                 break;
 
             case State.ChaseTarget:
-                transform.position = Vector3.MoveTowards(transform.position, player.transform.position, 50f * Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, player.transform.position, runningSpeed * Time.deltaTime);
                 //Attack Range
-                float attackRange = 10f;
+                float attackRange = 2f;
                 if (Vector3.Distance(transform.position, player.transform.position) <= attackRange)
                 {
                     if (Time.time > nextAttackTime)
@@ -60,8 +62,8 @@ public class EnemyAI : MonoBehaviour
                     }
                 }
                 //Chasing Distance
-                float stopChasingDistance = 80f;
-                if (Vector3.Distance(transform.position, player.transform.position) >= stopChasingDistance)
+                float stopChasingDistance = enemyAttackRange;
+                if (Vector3.Distance(transform.position, player.transform.position) > stopChasingDistance)
                 {
                     //Player Got Away
                     Debug.Log("Lucky soon of a Plant you got Away");
@@ -73,7 +75,7 @@ public class EnemyAI : MonoBehaviour
                 break;
 
             case State.goingBackToStart:
-                transform.position = Vector3.MoveTowards(transform.position, startingPosition, 8f * Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, startingPosition, walkigSpeed * Time.deltaTime);
                 if (chaseWhenGoingHome)
                     FindTarget();
                 if (transform.position.x == startingPosition.x)
