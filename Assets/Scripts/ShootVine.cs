@@ -7,14 +7,7 @@ public class ShootVine : MonoBehaviour
     public float vineSpeed = 0.000002f;
     public bool attach = false;
 
-    public Rigidbody2D myRigidBody;
-
-    private Vector2 heading;
-    private Vector2 direction;
-
-    public Vector3 targetPos;
-    public Vector2 targetPos2D;
-    public Vector2 playerPos;
+    public Rigidbody2D rigidBody;
 
     public PlayerMove player;
 
@@ -27,15 +20,17 @@ public class ShootVine : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        myRigidBody = GetComponent<Rigidbody2D>();
-        playerPos = myRigidBody.position;
-        targetPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+        rigidBody = GetComponent<Rigidbody2D>();
+
+        Vector3 targetPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         targetPos.z = 0;
-        targetPos2D = targetPos;
-        heading = targetPos2D - playerPos;
-        direction = heading / heading.magnitude;
-        myRigidBody.velocity += direction * vineSpeed;
-        Debug.Log($"Instance {player}");
+
+        Vector3 heading = targetPos - transform.position;
+        Vector3 direction = heading.normalized;
+        rigidBody.velocity += (Vector2)direction * vineSpeed;
+
+        transform.position = transform.position + direction * 1f;
     }
 
     // Update is called once per frame
@@ -56,7 +51,20 @@ public class ShootVine : MonoBehaviour
 
         if (isAttached)
         {
-            player.playerBody.velocity = direction * vineSpeed;
+            var temp = rigidBody.position - player.playerBody.position;
+            temp = temp / temp.magnitude * 0.2f;
+
+            if (player.playerBody.velocity.x > 10)
+                player.playerBody.velocity = new Vector2(10, player.playerBody.velocity.y);
+            if (player.playerBody.velocity.y > 10)
+                player.playerBody.velocity = new Vector2(player.playerBody.velocity.x, 10);
+            if (player.playerBody.velocity.x < -10)
+                player.playerBody.velocity = new Vector2(-10, player.playerBody.velocity.y);
+            if (player.playerBody.velocity.y < -10)
+                player.playerBody.velocity = new Vector2(player.playerBody.velocity.x, -10);
+            //temp += player.playerBody.velocity;
+
+            player.playerBody.velocity = player.playerBody.velocity + temp;
         }
     }
 
@@ -65,8 +73,9 @@ public class ShootVine : MonoBehaviour
 
         if (col.gameObject.tag == "Platform")
         {
-            myRigidBody.velocity = Vector2.zero;
+            rigidBody.velocity = Vector2.zero;
             isAttached = true;
+            vineRenderer.Attached();
 
             print("collide");
 
