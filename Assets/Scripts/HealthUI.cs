@@ -4,38 +4,41 @@ using UnityEngine;
 using UnityEngine.UI;
 public class HealthUI : MonoBehaviour
 {
-    [SerializeField] int currentHealth = 3;
+    [SerializeField] float currentHealth = 3;
     public Image[] images = new Image[3];
-
+    public PlayerCombat combat;
     private void Start()
     {
         currentHealth = 3;
         ShowCurrentHealth();
+        combat=  GameObject.FindWithTag("Player").GetComponent<PlayerCombat>();
     }
 
     private void LateUpdate()
     {
         ShowCurrentHealth();
+        
     }
 
     private void ShowCurrentHealth()
     {
+        currentHealth = combat.Hp;
 
-        if (currentHealth == 3)
+        if (currentHealth == 25)
         {
             images[0].enabled = true;
             images[1].enabled = false;
             images[2].enabled = false;
         }
 
-        if (currentHealth == 2)
+        if (currentHealth == 15)
             {
             images[0].enabled = false;
             images[1].enabled = true;
             images[2].enabled = false;
         }
 
-        if (currentHealth == 1)
+        if (currentHealth == 5)
         {
             images[0].enabled = false;
             images[1].enabled = false;
