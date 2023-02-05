@@ -107,6 +107,7 @@ MonoBehaviour:
   targetPos2D: {x: 0, y: 0}
   playerPos: {x: 0, y: 0}
   player: {fileID: 0}
+  renderer: {fileID: 6340930802190810742}
 --- !u!50 &1831314284508316662
 Rigidbody2D:
   serializedVersion: 4

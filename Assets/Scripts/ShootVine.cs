@@ -17,6 +17,12 @@ public class ShootVine : MonoBehaviour
 
     public PlayerMove player;
 
+    [SerializeField]
+    private VineRenderer renderer;
+
+    private float aliveTime = 0.0f;
+    private bool isAttached = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -34,6 +40,12 @@ public class ShootVine : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        aliveTime += Time.deltaTime;
+
+        if (aliveTime > 3 && !isAttached)
+        {
+            renderer.Retract();
+        }
     }
 
     void OnTriggerEnter2D(Collider2D col)
@@ -42,6 +54,7 @@ public class ShootVine : MonoBehaviour
         if (col.gameObject.tag == "Platform")
         {
             myRigidBody.velocity = Vector2.zero;
+            isAttached = true;
 
             print("collide");
         }
