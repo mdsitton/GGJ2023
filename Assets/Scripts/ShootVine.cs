@@ -5,6 +5,7 @@ using UnityEngine;
 public class ShootVine : MonoBehaviour
 {
     public float vineSpeed = 0.000002f;
+    public bool attach = false;
 
     public Rigidbody2D myRigidBody;
 
@@ -18,7 +19,7 @@ public class ShootVine : MonoBehaviour
     public PlayerMove player;
 
     [SerializeField]
-    private VineRenderer renderer;
+    private VineRenderer vineRenderer;
 
     private float aliveTime = 0.0f;
     private bool isAttached = false;
@@ -44,8 +45,15 @@ public class ShootVine : MonoBehaviour
 
         if (aliveTime > 3 && !isAttached)
         {
-            renderer.Retract();
+            vineRenderer.Retract();
         }
+        if (Input.GetMouseButtonUp(0))
+        {
+            isAttached = false;
+        }
+
+        if (isAttached)
+            player.playerBody.velocity = direction * vineSpeed;
     }
 
     void OnTriggerEnter2D(Collider2D col)
@@ -57,7 +65,10 @@ public class ShootVine : MonoBehaviour
             isAttached = true;
 
             print("collide");
+
         }
+
+
     }
 
 
