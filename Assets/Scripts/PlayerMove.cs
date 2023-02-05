@@ -14,6 +14,7 @@ public class PlayerMove : MonoBehaviour
     void Start()
     {
         playerBody = GetComponent<Rigidbody2D>();
+        playerBody.interpolation = RigidbodyInterpolation2D.Extrapolate;
         vines = new List<VineMovement>();
     }
 
