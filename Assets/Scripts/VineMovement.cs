@@ -10,6 +10,8 @@ public enum VineState
     PULL,
 }
 
+public delegate void DestroyCallback(VineMovement vine);
+
 public class VineMovement : MonoBehaviour
 {
     public float vineSpeed = 0.000002f;
@@ -33,6 +35,8 @@ public class VineMovement : MonoBehaviour
     private bool isRetracting => State == VineState.RETRACT;
     private bool isFiring => State == VineState.FIRE;
     private bool isPulling => State == VineState.PULL;
+
+    public DestroyCallback DestroyCallback { get; set; }
 
 
     public float retractTimer = 1f;
@@ -74,21 +78,9 @@ public class VineMovement : MonoBehaviour
                 }
                 break;
 
+            // Attach state just stays still and no active code is happening here
+            // rendering code has a lot happening for this state
             case VineState.ATTACH:
-                var temp = rigidBody.position - player.playerBody.position;
-                temp = temp / temp.magnitude * 0.2f;
-
-                if (player.playerBody.velocity.x > 10)
-                    player.playerBody.velocity = new Vector2(10, player.playerBody.velocity.y);
-                if (player.playerBody.velocity.y > 10)
-                    player.playerBody.velocity = new Vector2(player.playerBody.velocity.x, 10);
-                if (player.playerBody.velocity.x < -10)
-                    player.playerBody.velocity = new Vector2(-10, player.playerBody.velocity.y);
-                if (player.playerBody.velocity.y < -10)
-                    player.playerBody.velocity = new Vector2(player.playerBody.velocity.x, -10);
-                //temp += player.playerBody.velocity;
-
-                player.playerBody.velocity = player.playerBody.velocity + temp;
                 break;
 
             case VineState.RETRACT:
@@ -99,9 +91,11 @@ public class VineMovement : MonoBehaviour
                 var distance = Vector3.Distance(transform.position, playerTransform.position);
                 if (distance < 0.5f)
                 {
+                    DestroyCallback?.Invoke(this);
                     Destroy(gameObject);
                 }
                 break;
+
             case VineState.PULL:
                 break;
         }
