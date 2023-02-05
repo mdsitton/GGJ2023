@@ -36,7 +36,13 @@ public class PlayerMove : MonoBehaviour
         vine.playerTransform = GetComponent<Transform>();
         vine.DestroyCallback += OnVineDelete;
 
+        vine.playerTransform = GetComponent<Transform>();
+
         gameObject.GetComponent<VineRenderer>().playerTransform = vine.playerTransform;
+
+        var vineRigidBody = gameObject.GetComponent<Rigidbody2D>();
+        vineRigidBody.velocity = playerBody.velocity;
+
 
         gameObject.SetActive(true);
 

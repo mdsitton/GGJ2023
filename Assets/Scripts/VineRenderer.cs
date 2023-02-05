@@ -27,6 +27,14 @@ public class VineRenderer : MonoBehaviour
         lineSegments = new Vector3[15];
         segmentVelocity = new Vector3[15];
 
+        var body = GetComponent<Rigidbody2D>();
+
+        // inherit segment velocities from rigidbody
+        for (int i = 0; i < segmentVelocity.Length; ++i)
+        {
+            segmentVelocity[i] = body.velocity;
+        }
+
         GenerateLinePoints(lineSegments, playerTransform.position, vineTransform.position);
     }
 
