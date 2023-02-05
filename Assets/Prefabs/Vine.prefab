@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 3933235479955813383}
   - component: {fileID: 3957506898747600230}
   - component: {fileID: 1831314284508316662}
-  m_Layer: 0
+  - component: {fileID: 375912768}
+  m_Layer: 6
   m_Name: Vine
-  m_TagString: Untagged
+  m_TagString: Vine
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -99,8 +100,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vineSpeed: 10
-  theRigidBody: {fileID: 0}
-  player: {fileID: 0}
+  myRigidBody: {fileID: 0}
+  targetPos: {x: 0, y: 0, z: 0}
+  targetPos2D: {x: 0, y: 0}
+  playerPos: {x: 0, y: 0}
 --- !u!50 &1831314284508316662
 Rigidbody2D:
   serializedVersion: 4
@@ -128,3 +131,38 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!58 &375912768
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3933235479955813382}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 128
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 64
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
