@@ -21,7 +21,8 @@ public class CameraFollow : MonoBehaviour
 
     void Update()
     {
-        var tmpPos = Vector3.SmoothDamp(cam.transform.position, playerTransform.position, ref currentVelocity, 0.2f);
+        var distance = Vector3.Distance(cam.transform.position, playerTransform.position);
+        var tmpPos = Vector3.SmoothDamp(cam.transform.position, playerTransform.position, ref currentVelocity, 0.7f / Mathf.Abs(distance));
         cam.transform.position = new Vector3(tmpPos.x, tmpPos.y, -10);
     }
 }
