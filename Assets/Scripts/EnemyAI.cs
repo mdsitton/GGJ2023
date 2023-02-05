@@ -57,7 +57,6 @@ public class EnemyAI : MonoBehaviour
                         // Animation System Maybe 
                         // currentState = State.ChaseTarget; // Reset State when Animation is Finish
                         nextAttackTime = Time.time + fireRate;//Reset for Next Attack
-
                     }
                 }
                 //Chasing Distance

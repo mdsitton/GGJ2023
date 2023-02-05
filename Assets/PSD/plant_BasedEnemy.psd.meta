@@ -7910,7 +7910,7 @@ TextureImporter:
       plant_BasedEnemy_7: -868086602
       plant_BasedEnemy_3: -1589437946
   mipmapLimitGroupName: 
-  pSDRemoveMatte: 0
+  pSDRemoveMatte: 1
   userData: 
   assetBundleName: 
   assetBundleVariant: 
