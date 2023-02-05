@@ -47,11 +47,14 @@ public class VineRenderer : MonoBehaviour
 
         if (isRetracting)
         {
-            for (int i = 0; i < lineSegments.Length; ++i)
+            vineTransform.position = Vector3.SmoothDamp(vineTransform.position, playerTransform.position, ref endRetractVelocity, 0.5f);
+
+            lineSegments[lineSegments.Length - 1] = vineTransform.position;
+            for (int i = 1; i < lineSegments.Length - 1; ++i)
             {
                 lineSegments[i] = Vector3.SmoothDamp(lineSegments[i], playerTransform.position, ref segmentVelocity[i], 0.5f);
             }
-            vineTransform.position = Vector3.SmoothDamp(vineTransform.position, playerTransform.position, ref endRetractVelocity, 0.5f);
+            lineSegments[lineSegments.Length - 1] = playerTransform.position;
 
             var distance = Vector3.Distance(vineTransform.position, playerTransform.position);
             if (distance < 0.5f)
