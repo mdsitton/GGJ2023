@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Platform
   - Vine
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -16,7 +17,7 @@ TagManager:
   - Vine
   - Ground
   - Player
-  - 
+  - Enemy
   - 
   - 
   - 

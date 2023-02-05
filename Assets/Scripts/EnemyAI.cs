@@ -63,7 +63,7 @@ public class EnemyAI : MonoBehaviour, IAttackable
                     if (Time.time > nextAttackTime)
                     {
                         // currentState = State.attackingTarget;
-                        float fireRate = .5f;
+                        float fireRate = 0.75f;
                         Debug.Log("Enemy NEAR you he can ATTACK");
                         player.GetComponent<IAttackable>().Attack(3.0f);
 

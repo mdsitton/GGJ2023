@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3509469038878629078}
   - component: {fileID: 4699013896542328093}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: flower_limb copy 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5459879548258902354}
   - component: {fileID: 687429221719845896}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: flower_head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -178,7 +178,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5928593025944732739}
   - component: {fileID: 6405100478765026045}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: flower_limb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -262,7 +262,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6451552356840752520}
   - component: {fileID: 7379227404893765502}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: flower_limb copy 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -346,7 +346,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4853806500552374012}
   - component: {fileID: 8085677901866902443}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: pot_leaf_left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -430,7 +430,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5869422074377706994}
   - component: {fileID: 265540252801696101}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: flower_jaw
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -514,7 +514,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6679914115508083719}
   - component: {fileID: 2761652398183783688}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: pot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -598,7 +598,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3333332952259100980}
   - component: {fileID: 735217961112800734}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: flower_limb copy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -682,7 +682,7 @@ GameObject:
   m_Component:
   - component: {fileID: 189291568619736709}
   - component: {fileID: 2599682967346975604}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: pot_leaf_right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -766,7 +766,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8696321764663507883}
   - component: {fileID: 1029545098442964874}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: flower_body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -849,9 +849,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8068182621311955272}
-  m_Layer: 0
+  - component: {fileID: 1395972226}
+  - component: {fileID: 1395972225}
+  - component: {fileID: 1395972224}
+  - component: {fileID: 8952880502366768368}
+  m_Layer: 8
   m_Name: PlantyAndPottyPSB
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -879,5 +883,98 @@ Transform:
   - {fileID: 3333332952259100980}
   - {fileID: 5928593025944732739}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &1395972226
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9169303054389618987}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 1
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!70 &1395972225
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9169303054389618987}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 128
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 64
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 0.5, y: 1}
+  m_Direction: 0
+--- !u!114 &1395972224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9169303054389618987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea7a07fc245c8ff4c97c19ecc9a74d7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Vine: {fileID: 3933235479955813382, guid: 572af5d57c18b3e4faa78be1027a35a4, type: 3}
+  playerPos: {x: 0, y: 0, z: 0}
+  playerBody: {fileID: 1395972226}
+--- !u!114 &8952880502366768368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9169303054389618987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72cc3177a48d39b4abf541025a3abec8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hp: 25
+  attackDmg: 10
+  attackRange: 1
+  attackArea: 1
