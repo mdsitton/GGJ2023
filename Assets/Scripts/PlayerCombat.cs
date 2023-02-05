@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 [RequireComponent(typeof(PlayerMove))]
@@ -48,6 +49,10 @@ public class PlayerCombat : MonoBehaviour, IAttackable
 
     private void Update()
     {
+        if (Hp <= 0)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
 
     }
 
