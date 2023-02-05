@@ -404,6 +404,67 @@ MonoBehaviour:
   Vine: {fileID: 3933235479955813382, guid: 572af5d57c18b3e4faa78be1027a35a4, type: 3}
   playerPos: {x: 0, y: 0, z: 0}
   playerBody: {fileID: 799496625}
+--- !u!1001 &1073127145
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6054807183000586105, guid: 7bf4b0b86e508e04a950beaabe772114, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6054807183000586105, guid: 7bf4b0b86e508e04a950beaabe772114, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6054807183000586105, guid: 7bf4b0b86e508e04a950beaabe772114, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6054807183000586105, guid: 7bf4b0b86e508e04a950beaabe772114, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6054807183000586105, guid: 7bf4b0b86e508e04a950beaabe772114, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6054807183000586105, guid: 7bf4b0b86e508e04a950beaabe772114, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6054807183000586105, guid: 7bf4b0b86e508e04a950beaabe772114, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6054807183000586105, guid: 7bf4b0b86e508e04a950beaabe772114, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6054807183000586105, guid: 7bf4b0b86e508e04a950beaabe772114, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6054807183000586105, guid: 7bf4b0b86e508e04a950beaabe772114, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6054807183000586105, guid: 7bf4b0b86e508e04a950beaabe772114, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8501765218312609241, guid: 7bf4b0b86e508e04a950beaabe772114, type: 3}
+      propertyPath: m_Name
+      value: plant_BasedEnemy
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7bf4b0b86e508e04a950beaabe772114, type: 3}
 --- !u!1 &1101792383
 GameObject:
   m_ObjectHideFlags: 0
