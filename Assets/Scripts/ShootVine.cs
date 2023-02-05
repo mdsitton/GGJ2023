@@ -56,7 +56,11 @@ public class ShootVine : MonoBehaviour
 
         if (isAttached)
         {
-            player.playerBody.velocity = direction * vineSpeed;
+            var temp = myRigidBody.position-player.playerBody.position;
+            temp = temp / temp.magnitude*0.1f;
+            //temp += player.playerBody.velocity;
+         
+            player.playerBody.velocity = player.playerBody.velocity+temp;//direction * vineSpeed;
         }
     }
 
