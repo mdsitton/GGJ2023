@@ -8,14 +8,37 @@ public class PlayerMove : MonoBehaviour
     public Vector3 playerPos;
     public Rigidbody2D playerBody;
 
+    private SpriteRenderer[] spriteRenderers;
+
     private List<VineMovement> vines;
+
+    public Vector2 MovementDirection => playerBody.velocity.normalized;
 
     // Start is called before the first frame update
     void Start()
     {
         playerBody = GetComponent<Rigidbody2D>();
+        spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
         playerBody.interpolation = RigidbodyInterpolation2D.Extrapolate;
         vines = new List<VineMovement>();
+    }
+
+    private void FlipDirection(Vector2 direction)
+    {
+        if (direction.x <= 0)
+        {
+            foreach (var sprite in spriteRenderers)
+            {
+                sprite.flipX = true;
+            }
+        }
+        else
+        {
+            foreach (var sprite in spriteRenderers)
+            {
+                sprite.flipX = false;
+            }
+        }
     }
 
     private void OnVineDelete(VineMovement vine)
@@ -123,5 +146,7 @@ public class PlayerMove : MonoBehaviour
                 vine.State = VineState.RETRACT;
             }
         }
+
+        FlipDirection(MovementDirection);
     }
 }
