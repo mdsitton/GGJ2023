@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a599d35a960e1214a824ee2bee24e96d
+guid: 7a519754429fc3647b7b6de1180b8069
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -94,60 +94,18 @@ ScriptedImporter:
     spritePosition: {x: 0, y: 0}
   mosaicSpriteImportData: []
   rigSpriteImportData:
-  - name: UIHealth_0
+  - name: Frame
     originalName: 
-    pivot: {x: 0, y: 0}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 4
-      y: 354
-      width: 262
-      height: 148
-    spriteID: dc33df51df1d17043ac1316e1dd5c6d0
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 4, y: 354}
-    spritePosition: {x: 0, y: 0}
-  - name: UIHealth_1
-    originalName: 
-    pivot: {x: 0, y: 0}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 4
-      y: 190
-      width: 300
-      height: 156
-    spriteID: 2836c05090bf0bb4d82b5ba1066c2604
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 4, y: 190}
-    spritePosition: {x: 0, y: 0}
-  - name: UIHealth_2
-    originalName: 
-    pivot: {x: 0, y: 0}
+    pivot: {x: 0.5, y: 0.5}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 324
-      height: 178
-    spriteID: 4d964553b1b900e429c7ddfa1fafbade
+      width: 388
+      height: 667
+    spriteID: afcdbfefd2e09ff47b8bb82604f6a1af
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -156,7 +114,49 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
-    spritePosition: {x: 0, y: 0}
+    spritePosition: {x: 710, y: 0}
+  - name: DoorLeft
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 672
+      y: 4
+      width: 182
+      height: 532
+    spriteID: 929a62f842dda4b45b88375bd58ae55c
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 672, y: 4}
+    spritePosition: {x: 899, y: 0}
+  - name: DoorRight
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 400
+      y: 4
+      width: 264
+      height: 534
+    spriteID: 3055599873a55af4baa9af93599d1281
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 400, y: 4}
+    spritePosition: {x: 726, y: 0}
   characterData:
     bones: []
     parts: []
@@ -172,40 +172,7 @@ ScriptedImporter:
     characterGroups: []
     pivot: {x: 0, y: 0}
     boneReadOnly: 0
-  platformSettings:
-  - name: DefaultTexturePlatform
-    overridden: 0
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    androidETC2FallbackOverride: 0
-  - name: Standalone
-    overridden: 0
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    androidETC2FallbackOverride: 0
-  - name: Server
-    overridden: 0
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    androidETC2FallbackOverride: 0
+  platformSettings: []
   mosaicLayers: 1
   characterMode: 1
   documentPivot: {x: 0, y: 0}
@@ -224,33 +191,33 @@ ScriptedImporter:
   resliceFromLayer: 0
   mosaicPSDLayers: []
   rigPSDLayers:
-  - name: Green
-    spriteName: Green
+  - name: Frame
+    spriteName: Frame
     isGroup: 0
     parentIndex: -1
-    spriteID: 1ce96280c2dd39b4a8bf2e9af8a6b59f
-    layerID: 5
+    spriteID: afcdbfefd2e09ff47b8bb82604f6a1af
+    layerID: 7
     mosaicPosition: {x: 4, y: 4}
     flatten: 0
     isImported: 1
     isVisible: 1
-  - name: Yellow
-    spriteName: Yellow
+  - name: DoorLeft
+    spriteName: DoorLeft
     isGroup: 0
     parentIndex: -1
-    spriteID: 8f672d3096823ad4883e9928075b3092
-    layerID: 4
-    mosaicPosition: {x: 4, y: 354}
+    spriteID: 929a62f842dda4b45b88375bd58ae55c
+    layerID: 13
+    mosaicPosition: {x: 672, y: 4}
     flatten: 0
     isImported: 1
     isVisible: 1
-  - name: Red
-    spriteName: Red
+  - name: DoorRight
+    spriteName: DoorRight
     isGroup: 0
     parentIndex: -1
-    spriteID: 7400e619f91a18b4b88e3440b3d0f2dc
-    layerID: 2
-    mosaicPosition: {x: 4, y: 190}
+    spriteID: 3055599873a55af4baa9af93599d1281
+    layerID: 15
+    mosaicPosition: {x: 400, y: 4}
     flatten: 0
     isImported: 1
     isVisible: 1
