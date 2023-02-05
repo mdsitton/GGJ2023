@@ -2,26 +2,25 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(LineRenderer))]
+[RequireComponent(typeof(LineRenderer), typeof(VineMovement))]
 public class VineRenderer : MonoBehaviour
 {
     [SerializeField]
     private LineRenderer lineRenderer;
 
     private Transform vineTransform;
-    public Transform playerTransform;
 
     private Vector3[] tightenTargets;
     private Vector3[] lineSegments;
     private Vector3[] segmentVelocity;
 
-    private Vector3 endRetractVelocity;
+    private VineMovement movement;
 
-    private bool isRetracting = false;
-    private bool isAttached = false;
+    public Transform playerTransform;
 
     private void Start()
     {
+        movement = GetComponent<VineMovement>();
         lineRenderer = GetComponent<LineRenderer>();
         vineTransform = GetComponent<Transform>();
         tightenTargets = new Vector3[15];
@@ -34,18 +33,6 @@ public class VineRenderer : MonoBehaviour
     private Vector3 RandomVector(float scale)
     {
         return new Vector3(UnityEngine.Random.Range(-scale, scale), UnityEngine.Random.Range(-scale, scale), 0.0f);
-    }
-
-    public void Retract()
-    {
-        isRetracting = true;
-        isAttached = false;
-        GetComponent<Rigidbody2D>().velocity = Vector3.zero;
-    }
-
-    public void Attached()
-    {
-        isAttached = true;
     }
 
     public void GenerateLinePoints(Vector3[] outputPoints, Vector3 startPos, Vector3 endPos)
@@ -61,42 +48,35 @@ public class VineRenderer : MonoBehaviour
         outputPoints[tightenTargets.Length - 1] = startPos;
     }
 
-
     private void Update()
     {
-        if (isRetracting)
+        switch (movement.State)
         {
-            vineTransform.position = Vector3.SmoothDamp(vineTransform.position, playerTransform.position, ref endRetractVelocity, 0.3f);
-
-            lineSegments[0] = vineTransform.position;
-            for (int i = 1; i < lineSegments.Length - 1; ++i)
-            {
-                lineSegments[i] = Vector3.SmoothDamp(lineSegments[i], playerTransform.position, ref segmentVelocity[i], 0.3f);
-            }
-            lineSegments[lineSegments.Length - 1] = playerTransform.position;
-
-            var distance = Vector3.Distance(vineTransform.position, playerTransform.position);
-            if (distance < 0.5f)
-            {
-                Destroy(gameObject);
-            }
-        }
-        else if (isAttached)
-        {
-            GenerateLinePoints(tightenTargets, playerTransform.position, vineTransform.position);
-            for (int i = 0; i < lineSegments.Length; ++i)
-            {
-                lineSegments[i] = Vector3.SmoothDamp(lineSegments[i], tightenTargets[i], ref segmentVelocity[i], 0.1f);
-            }
-        }
-        else
-        {
-            lineSegments[0] = vineTransform.position;
-            for (int i = 1; i < lineSegments.Length - 1; ++i)
-            {
-                lineSegments[i] = Vector3.SmoothDamp(lineSegments[i], lineSegments[i - 1], ref segmentVelocity[i], 0.3f);
-            }
-            lineSegments[lineSegments.Length - 1] = playerTransform.position;
+            case VineState.FIRE:
+                lineSegments[0] = vineTransform.position;
+                for (int i = 1; i < lineSegments.Length - 1; ++i)
+                {
+                    lineSegments[i] = Vector3.SmoothDamp(lineSegments[i], lineSegments[i - 1], ref segmentVelocity[i], 0.3f);
+                }
+                lineSegments[lineSegments.Length - 1] = playerTransform.position;
+                break;
+            case VineState.ATTACH:
+                GenerateLinePoints(tightenTargets, playerTransform.position, vineTransform.position);
+                for (int i = 0; i < lineSegments.Length; ++i)
+                {
+                    lineSegments[i] = Vector3.SmoothDamp(lineSegments[i], tightenTargets[i], ref segmentVelocity[i], 0.1f);
+                }
+                break;
+            case VineState.RETRACT:
+                lineSegments[0] = vineTransform.position;
+                for (int i = 1; i < lineSegments.Length - 1; ++i)
+                {
+                    lineSegments[i] = Vector3.SmoothDamp(lineSegments[i], playerTransform.position, ref segmentVelocity[i], movement.retractTimer * 0.3f);
+                }
+                lineSegments[lineSegments.Length - 1] = playerTransform.position;
+                break;
+            case VineState.PULL:
+                break;
         }
 
         lineRenderer.SetPositions(lineSegments);
