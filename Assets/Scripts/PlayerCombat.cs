@@ -15,7 +15,7 @@ public class PlayerCombat : MonoBehaviour, IAttackable
     [SerializeField]
     private float attackRange = 1f;
     [SerializeField]
-    private float attackArea = 0.5f;
+    private float attackArea = 0.25f;
 
     private PlayerMove move;
     private Rigidbody2D body;
@@ -31,6 +31,13 @@ public class PlayerCombat : MonoBehaviour, IAttackable
         enemyLayerMask = LayerMask.GetMask("Enemy");
     }
 
+    private void DoDamage(IAttackable other)
+    {
+
+        var dmg = attackDmg + (body.velocity.magnitude / 2);
+        other.Attack(dmg);
+    }
+
     private void FixedUpdate()
     {
         var movementDirection = move.MovementDirection;
@@ -41,8 +48,18 @@ public class PlayerCombat : MonoBehaviour, IAttackable
             var attackable = cast.collider.gameObject.GetComponent<IAttackable>();
             if (attackable != null)
             {
-                var dmg = 2.0f + body.velocity.magnitude;
-                attackable.Attack(dmg);
+                DoDamage(attackable);
+            }
+        }
+
+        cast = Physics2D.CircleCast(transform.position, attackArea, Vector2.down, attackRange, enemyLayerMask);
+
+        if (cast.collider != null)
+        {
+            var attackable = cast.collider.gameObject.GetComponent<IAttackable>();
+            if (attackable != null)
+            {
+                DoDamage(attackable);
             }
         }
     }
@@ -53,7 +70,6 @@ public class PlayerCombat : MonoBehaviour, IAttackable
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
-
     }
 
     public void Attack(float damage)

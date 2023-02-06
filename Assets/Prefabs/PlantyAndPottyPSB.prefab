@@ -883,7 +883,7 @@ Transform:
   - {fileID: 3333332952259100980}
   - {fileID: 5928593025944732739}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &1395972226
 Rigidbody2D:
@@ -975,6 +975,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 25
-  attackDmg: 10
+  attackDmg: 0.5
   attackRange: 1
-  attackArea: 1
+  attackArea: 0.35
