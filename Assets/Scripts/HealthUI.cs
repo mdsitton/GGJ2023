@@ -23,21 +23,21 @@ public class HealthUI : MonoBehaviour
     {
         currentHealth = combat.Hp;
 
-        if (currentHealth == 25)
+        if (currentHealth <= 25)
         {
             images[0].enabled = true;
             images[1].enabled = false;
             images[2].enabled = false;
         }
 
-        if (currentHealth == 15)
+        if (currentHealth <= 15)
         {
             images[0].enabled = false;
             images[1].enabled = true;
             images[2].enabled = false;
         }
 
-        if (currentHealth == 5)
+        if (currentHealth <= 5)
         {
             images[0].enabled = false;
             images[1].enabled = false;
